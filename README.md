@@ -1,1 +1,1 @@
-# lantern-festival
+# LanternFestival
