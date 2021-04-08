@@ -7,6 +7,13 @@ public class CrabMoveType2 : MonoBehaviour
 {
     //crab body related;
     public GameObject mainBody;
+
+    // controlling the scale of the crab
+    public float scalingSpeed ;
+    public Vector3 min = new Vector3(0.06f, 0.06f, 1f);
+    public Vector3 max = new Vector3(0.11f, 0.11f, 1f);
+
+
     public Rigidbody2D carbBody;
     //public SpriteRenderer sprite;
 
@@ -14,6 +21,11 @@ public class CrabMoveType2 : MonoBehaviour
     public Animator Animator;
     bool walking;
     bool waving;
+
+    //telepotation reference objects
+    public GameObject reciver1;
+    public GameObject reciver2;
+ 
 
     //health
     [Range (0,100)]public float HealthAmount=100;
@@ -31,10 +43,16 @@ public class CrabMoveType2 : MonoBehaviour
         Animator.SetBool("isM1Walking",false);
         walking = false;
         healthText.text = HealthAmount+"";
+
+        //scale limits
+      
+
+       
+        
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         walking =false;
         waving =false;
@@ -43,22 +61,73 @@ public class CrabMoveType2 : MonoBehaviour
         //movement control
         if(Input.GetKey(KeyCode.A)){
             mainBody.transform.Translate(-HorizontalSpeed,0,0);
-           walking =true;
+            walking =true;
+            
         }
          if(Input.GetKey(KeyCode.D)){
             mainBody.transform.Translate(HorizontalSpeed,0,0);
             walking =true;
+            
         }
+
+        
+
         if(Input.GetKey(KeyCode.W)){
             mainBody.transform.Translate(0,VerticalSpeed,0);
             walking =true;
+            
+            mainBody.gameObject.transform.localScale -= new Vector3(0.0001f,0.0001f,0);
+
+            
+
+
         }
          if(Input.GetKey(KeyCode.S)){
             mainBody.transform.Translate(0,-VerticalSpeed,0);
             walking =true;
+
+
+            mainBody.gameObject.transform.localScale += new Vector3(0.0001f,0.0001f,0);
+
+            
+            
+            
+           
         }
 
-        //crab waving when press button
+
+        //limit the crab scale when reach the farthest/closest border
+
+       if(mainBody.gameObject.transform.localScale.x>0.11f){
+				Vector3 l = mainBody.gameObject.transform.localScale;
+				l.x = 0.11f;
+				mainBody.gameObject.transform.localScale= l;
+
+		}
+         if(mainBody.gameObject.transform.localScale.y>0.11f){
+				Vector3 l = mainBody.gameObject.transform.localScale;
+				l.y = 0.11f;
+				mainBody.gameObject.transform.localScale= l;
+
+		}
+
+        if(mainBody.gameObject.transform.localScale.x<0.06f){
+				Vector3 l = mainBody.gameObject.transform.localScale;
+				l.x = 0.06f;
+				mainBody.gameObject.transform.localScale= l;
+
+		}
+         if(mainBody.gameObject.transform.localScale.y<0.06f){
+				Vector3 l = mainBody.gameObject.transform.localScale;
+				l.y = 0.06f;
+				mainBody.gameObject.transform.localScale= l;
+
+		}
+
+
+
+
+        //crab waving when press and hold space button
         if(Input.GetKey(KeyCode.Space)){
             waving = true;
         }
@@ -91,10 +160,19 @@ public class CrabMoveType2 : MonoBehaviour
     //collision detection
      void OnTriggerEnter2D(Collider2D other) {
 
-        if (other.CompareTag ("mug")) {
+        if (other.CompareTag ("target1")) {
 
             HealthAmount -= 50;
-            Debug.Log(HealthAmount);
+            Debug.Log(mainBody.gameObject.transform.position.y);
+            //telepotation 
+            mainBody.gameObject.transform.position = new Vector3(reciver1.gameObject.transform.position.x,reciver1.gameObject.transform.position.y,reciver1.gameObject.transform.position.z);
+        }
+
+        if(other.CompareTag("target2")){
+            
+            //mainBody.gameObject.transform.position = new Vector3(1.44f,-0.4499999f,-70f);
+
+
         }
 
      }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8254742326285480936}
   m_Layer: 0
   m_Name: crabMod1
-  m_TagString: Untagged
+  m_TagString: crab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,6 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainBody: {fileID: 8254742326285480946}
+  scalingSpeed: 10
+  min: {x: 0.06, y: 0.06, z: 1}
+  max: {x: 0.11, y: 0.11, z: 1}
   carbBody: {fileID: 8254742326285480942}
   Animator: {fileID: 8254742326285480943}
   HealthAmount: 100

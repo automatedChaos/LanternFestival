@@ -17,6 +17,7 @@ TagManager:
   - target10
   - rightBoundary
   - leftBoundary
+  - crab
   layers:
   - Default
   - TransparentFX
