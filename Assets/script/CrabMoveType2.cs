@@ -29,7 +29,7 @@ public class CrabMoveType2 : MonoBehaviour
 
     //health
     [Range (0,100)]public float HealthAmount=100;
-    public Text healthText;
+    //public Text healthText;
 
     //speed
     public float HorizontalSpeed;
@@ -42,7 +42,7 @@ public class CrabMoveType2 : MonoBehaviour
         carbBody = GetComponent<Rigidbody2D>();
         Animator.SetBool("isM1Walking",false);
         walking = false;
-        healthText.text = HealthAmount+"";
+        //healthText.text = HealthAmount+"";
 
         //scale limits
       
@@ -56,7 +56,7 @@ public class CrabMoveType2 : MonoBehaviour
     {
         walking =false;
         waving =false;
-         healthText.text = HealthAmount+"";
+       //  healthText.text = HealthAmount+"";
         
         //movement control
         if(Input.GetKey(KeyCode.A)){
@@ -147,15 +147,15 @@ public class CrabMoveType2 : MonoBehaviour
 
         
     }
-    public void healthManage(float change){
-		HealthAmount += change;
-		if (HealthAmount < 0) {
-			HealthAmount = 0;
+    //public void healthManage(float change){
+		//HealthAmount += change;
+		//if (HealthAmount < 0) {
+		//	HealthAmount = 0;
         
-		}
+		//}
         
         
-    }
+    //}
 
     //collision detection
      void OnTriggerEnter2D(Collider2D other) {
@@ -171,7 +171,8 @@ public class CrabMoveType2 : MonoBehaviour
         if(other.CompareTag("target2")){
             
             //mainBody.gameObject.transform.position = new Vector3(1.44f,-0.4499999f,-70f);
-
+            mainBody.gameObject.transform.position = new Vector3(reciver2.gameObject.transform.position.x,reciver2.gameObject.transform.position.y,reciver2.gameObject.transform.position.z);
+        
 
         }
 
