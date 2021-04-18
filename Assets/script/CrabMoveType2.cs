@@ -35,9 +35,13 @@ public class CrabMoveType2 : MonoBehaviour
     public float HorizontalSpeed;
     public float VerticalSpeed;
 
+    private int[] networkWASD = {
+            0,0,0,0
+        };
 
-    // Start is called before the first frame update
-    void Start()
+
+  // Start is called before the first frame update
+  void Start()
     {
         carbBody = GetComponent<Rigidbody2D>();
         Animator.SetBool("isM1Walking",false);
@@ -56,49 +60,42 @@ public class CrabMoveType2 : MonoBehaviour
     {
         walking =false;
         waving =false;
-       //  healthText.text = HealthAmount+"";
-        
-        //movement control
-        if(Input.GetKey(KeyCode.A)){
-            mainBody.transform.Translate(-HorizontalSpeed,0,0);
-            walking =true;
-            
-        }
-         if(Input.GetKey(KeyCode.D)){
-            mainBody.transform.Translate(HorizontalSpeed,0,0);
-            walking =true;
-            
+        //healthText.text = HealthAmount+"";
+
+        // up
+        if (Input.GetKey(KeyCode.W) || networkWASD[0] == 1)
+        {
+            mainBody.transform.Translate(0, VerticalSpeed, 0);
+            walking = true;
+            mainBody.gameObject.transform.localScale -= new Vector3(0.0001f, 0.0001f, 0);
         }
 
-        
-
-        if(Input.GetKey(KeyCode.W)){
-            mainBody.transform.Translate(0,VerticalSpeed,0);
-            walking =true;
-            
-            mainBody.gameObject.transform.localScale -= new Vector3(0.0001f,0.0001f,0);
-
-            
-
-
+        // left
+        if (Input.GetKey(KeyCode.A) || networkWASD[1] == 1)
+        {
+            mainBody.transform.Translate(-HorizontalSpeed, 0, 0);
+            walking = true;
         }
-         if(Input.GetKey(KeyCode.S)){
-            mainBody.transform.Translate(0,-VerticalSpeed,0);
-            walking =true;
 
+        // right
+        if (Input.GetKey(KeyCode.S) || networkWASD[2] == 1)
+        {
+            mainBody.transform.Translate(0, -VerticalSpeed, 0);
+            walking = true;
+            mainBody.gameObject.transform.localScale += new Vector3(0.0001f, 0.0001f, 0);
+        }
 
-            mainBody.gameObject.transform.localScale += new Vector3(0.0001f,0.0001f,0);
-
-            
-            
-            
-           
+        // down
+        if (Input.GetKey(KeyCode.D) || networkWASD[3] == 1)
+        {
+            mainBody.transform.Translate(HorizontalSpeed, 0, 0);
+            walking = true;
         }
 
 
-        //limit the crab scale when reach the farthest/closest border
+    //limit the crab scale when reach the farthest/closest border
 
-       if(mainBody.gameObject.transform.localScale.x>0.11f){
+    if(mainBody.gameObject.transform.localScale.x>0.11f){
 				Vector3 l = mainBody.gameObject.transform.localScale;
 				l.x = 0.11f;
 				mainBody.gameObject.transform.localScale= l;
@@ -144,7 +141,7 @@ public class CrabMoveType2 : MonoBehaviour
              Animator.SetBool("isM1Walking",false);
         }
 
-
+        resetNetworkWASD();
         
     }
     //public void healthManage(float change){
@@ -177,5 +174,19 @@ public class CrabMoveType2 : MonoBehaviour
         }
 
      }
-        
+  public void setNetworkWASD(int[] values)
+  {
+    for (int i = 0; i < networkWASD.Length; i++)
+    {
+      networkWASD[i] = values[i];
+    }
+  }
+
+  void resetNetworkWASD()
+  {
+    for (int i = 0; i < networkWASD.Length; i++)
+    {
+      networkWASD[i] = 0;
+    }
+  }
 }
