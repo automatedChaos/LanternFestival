@@ -17,6 +17,8 @@ public class Connection : MonoBehaviour
 
   [SerializeField]
   private GameObject playerPrefab; 
+  
+  public GameObject[] crabTypes = {null, null, null, null, null, null};
 
   // Start is called before the first frame update
   async void Start()
@@ -51,7 +53,7 @@ public class Connection : MonoBehaviour
           clientKey = payload.key;
           SendWebSocketMessage();
           break;
-        case "player-start":
+        case "player-type":
           playerStart(payload);
           break;
         case "player-position":
@@ -81,8 +83,8 @@ public class Connection : MonoBehaviour
 
     Vector3 initPosition = randomPosition();
     if (SpawnPoint != null) initPosition = SpawnPoint.transform.position;
-
-    GameObject newPlayer = Instantiate(playerPrefab, initPosition, Quaternion.identity);
+    
+    GameObject newPlayer = Instantiate(crabTypes[Int16.Parse(payload.data)], initPosition, Quaternion.identity);
     newPlayer.name = payload.key;
     players[payload.key] = newPlayer;
   }
@@ -101,11 +103,15 @@ public class Connection : MonoBehaviour
       if (crab == null || movement == null) return;
       
       // WASD
-      if (networkControls.y ==  1) movement.setNetworkWASD(new int[] { 1, 0, 0, 0 });
-      if (networkControls.x == -1) movement.setNetworkWASD(new int[] { 0, 1, 0, 0 });
-      if (networkControls.x ==  1) movement.setNetworkWASD(new int[] { 0, 0, 1, 0 });
-      if (networkControls.y == -1) movement.setNetworkWASD(new int[] { 0, 0, 0, 1 });
+      if (networkControls.y ==  1) movement.setNetworkWASD(new int[] { 1, 0, 0, 0, 0 });
+      if (networkControls.x == -1) movement.setNetworkWASD(new int[] { 0, 1, 0, 0, 0 });
+      if (networkControls.x ==  1) movement.setNetworkWASD(new int[] { 0, 0, 1, 0, 0 });
+      if (networkControls.y == -1) movement.setNetworkWASD(new int[] { 0, 0, 0, 1, 0 });
 
+      if (networkControls.x == 0 && networkControls.y == 0) {
+        
+        movement.setNetworkWASD(new int[] { 0, 0, 0, 0, 1 });
+      }
     }
    
   }

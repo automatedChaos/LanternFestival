@@ -339,7 +339,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34003235}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &34003237
 Camera:
   m_ObjectHideFlags: 0
@@ -7204,6 +7204,13 @@ MonoBehaviour:
   SpawnPoint: {fileID: 1027740701}
   playerPrefab: {fileID: 815616404684158384, guid: d86b0c7674b704785a445464ad017c2b,
     type: 3}
+  crabTypes:
+  - {fileID: 815616404684158384, guid: d86b0c7674b704785a445464ad017c2b, type: 3}
+  - {fileID: 1529785291052502685, guid: 316a4624f517e43daa1f3a0f436dd475, type: 3}
+  - {fileID: 5355332821302487895, guid: 76b3c812587cf46b5b2be5efa90eb1ae, type: 3}
+  - {fileID: 4801652118865885210, guid: 3b72706f4a8314ed5b0ad322f864d28a, type: 3}
+  - {fileID: 7467485177666856134, guid: a6dd257b459cb4f3b9a4f08d16ce8f6f, type: 3}
+  - {fileID: 5250900506568500623, guid: 551cd1a5bcb2a47d6a17a8fd8cebd32e, type: 3}
 --- !u!4 &648421017
 Transform:
   m_ObjectHideFlags: 0
@@ -7216,7 +7223,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &660633762
 PrefabInstance:
@@ -9868,7 +9875,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917121006}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &917121008
 Camera:
   m_ObjectHideFlags: 0
@@ -18820,7 +18827,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860791624}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1860791626
 Camera:
   m_ObjectHideFlags: 0
@@ -21550,6 +21557,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: crabMod1
       objectReference: {fileID: 0}
+    - target: {fileID: 815616404684158384, guid: d86b0c7674b704785a445464ad017c2b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 815616404684158412, guid: d86b0c7674b704785a445464ad017c2b,
         type: 3}
       propertyPath: reciver1
@@ -21684,6 +21696,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: crabMod4
       objectReference: {fileID: 0}
+    - target: {fileID: 4801652118865885210, guid: 3b72706f4a8314ed5b0ad322f864d28a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4801652118865885215, guid: 3b72706f4a8314ed5b0ad322f864d28a,
         type: 3}
       propertyPath: reciver1
@@ -21705,6 +21722,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5250900506568500617, guid: 551cd1a5bcb2a47d6a17a8fd8cebd32e,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250900506568500617, guid: 551cd1a5bcb2a47d6a17a8fd8cebd32e,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 75.49027
       objectReference: {fileID: 0}
@@ -21720,6 +21742,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5250900506568500617, guid: 551cd1a5bcb2a47d6a17a8fd8cebd32e,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250900506568500617, guid: 551cd1a5bcb2a47d6a17a8fd8cebd32e,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -21732,16 +21759,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5250900506568500617, guid: 551cd1a5bcb2a47d6a17a8fd8cebd32e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5250900506568500617, guid: 551cd1a5bcb2a47d6a17a8fd8cebd32e,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5250900506568500617, guid: 551cd1a5bcb2a47d6a17a8fd8cebd32e,
         type: 3}
@@ -21773,6 +21790,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: crabMod6
       objectReference: {fileID: 0}
+    - target: {fileID: 5250900506568500623, guid: 551cd1a5bcb2a47d6a17a8fd8cebd32e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 551cd1a5bcb2a47d6a17a8fd8cebd32e, type: 3}
 --- !u!1001 &5329286662326894779
@@ -21786,6 +21808,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: crabMod2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529785291052502685, guid: 316a4624f517e43daa1f3a0f436dd475,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1529785291052502687, guid: 316a4624f517e43daa1f3a0f436dd475,
         type: 3}
@@ -21921,6 +21948,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: crabMod3
       objectReference: {fileID: 0}
+    - target: {fileID: 5355332821302487895, guid: 76b3c812587cf46b5b2be5efa90eb1ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76b3c812587cf46b5b2be5efa90eb1ae, type: 3}
 --- !u!1001 &7467485177180282959
@@ -21942,6 +21974,11 @@ PrefabInstance:
       objectReference: {fileID: 920935807}
     - target: {fileID: 7467485177666856132, guid: a6dd257b459cb4f3b9a4f08d16ce8f6f,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467485177666856132, guid: a6dd257b459cb4f3b9a4f08d16ce8f6f,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 68.6
       objectReference: {fileID: 0}
@@ -21957,6 +21994,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7467485177666856132, guid: a6dd257b459cb4f3b9a4f08d16ce8f6f,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467485177666856132, guid: a6dd257b459cb4f3b9a4f08d16ce8f6f,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -21969,16 +22011,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7467485177666856132, guid: a6dd257b459cb4f3b9a4f08d16ce8f6f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7467485177666856132, guid: a6dd257b459cb4f3b9a4f08d16ce8f6f,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7467485177666856132, guid: a6dd257b459cb4f3b9a4f08d16ce8f6f,
         type: 3}
@@ -21999,6 +22031,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: crabMod5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467485177666856134, guid: a6dd257b459cb4f3b9a4f08d16ce8f6f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6dd257b459cb4f3b9a4f08d16ce8f6f, type: 3}
