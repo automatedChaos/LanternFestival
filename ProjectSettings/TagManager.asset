@@ -4,20 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - target1
-  - mug
-  - target2
-  - target3
-  - target4
-  - target5
-  - target6
-  - target7
-  - target8
-  - target9
-  - target10
-  - rightBoundary
-  - leftBoundary
   - crab
+  - target1
+  - target2
   layers:
   - Default
   - TransparentFX
