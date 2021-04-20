@@ -56,8 +56,7 @@ public class CrabMoveType2 : MonoBehaviour
   // Update is called once per frame
   void FixedUpdate()
   {
-    walking = false;
-    waving = false;
+    
     //healthText.text = HealthAmount+"";
 
     // up
@@ -150,7 +149,8 @@ public class CrabMoveType2 : MonoBehaviour
     }
 
     resetNetworkWASD();
-
+    walking = false;
+    waving = false;
   }
   //public void healthManage(float change){
   //HealthAmount += change;

@@ -3788,6 +3788,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 330499415}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &332544534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 332544535}
+  m_Layer: 0
+  m_Name: Tornado
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &332544535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332544534}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -102.57695, y: -2.0966349, z: -61.05295}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2004887722}
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &336640933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8695,6 +8726,63 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 397147768}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &818160540
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 332544535}
+    m_Modifications:
+    - target: {fileID: 100008, guid: d75f726928ed5f3488b19342d370c645, type: 3}
+      propertyPath: m_Name
+      value: Tornado_FX
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: d75f726928ed5f3488b19342d370c645, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: d75f726928ed5f3488b19342d370c645, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: d75f726928ed5f3488b19342d370c645, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: d75f726928ed5f3488b19342d370c645, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: d75f726928ed5f3488b19342d370c645, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: d75f726928ed5f3488b19342d370c645, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: d75f726928ed5f3488b19342d370c645, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: d75f726928ed5f3488b19342d370c645, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: d75f726928ed5f3488b19342d370c645, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: d75f726928ed5f3488b19342d370c645, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: d75f726928ed5f3488b19342d370c645, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d75f726928ed5f3488b19342d370c645, type: 3}
 --- !u!4 &823372501 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4356173073091618, guid: fc6a5cd082514c66873260e93d6d437f,
@@ -9863,7 +9951,7 @@ GameObject:
   - component: {fileID: 917121007}
   m_Layer: 0
   m_Name: Camera 3
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18819,7 +18907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1860791625
 AudioListener:
   m_ObjectHideFlags: 0
@@ -20036,6 +20124,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4304407338434254, guid: 9122fb4de38c442f8e314985b7dd05c1,
     type: 3}
   m_PrefabInstance: {fileID: 1999977703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2004887722 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400008, guid: d75f726928ed5f3488b19342d370c645,
+    type: 3}
+  m_PrefabInstance: {fileID: 818160540}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2009118140
 PrefabInstance:
