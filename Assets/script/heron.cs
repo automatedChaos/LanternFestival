@@ -45,13 +45,16 @@ public class heron : MonoBehaviour
     void Update()
     {
         if(movingRight == true){
-           // bird.transform.Translate(moveSpeed,0,0);
-           transform.localScale = new Vector3(0.6f,0.6f,0.6f);
-            
-        }else if(movingRight == false){
+            // bird.transform.Translate(moveSpeed,0,0);
+            // transform.localScale = new Vector3(0.3f,0.3f,0.3f);
+            transform.eulerAngles = new Vector3(0, 0, 0); // Normal
+
+        }
+        else if(movingRight == false){
             //bird.transform.Translate(-moveSpeed,0,0);
-            transform.localScale = new Vector3(-0.6f,0.6f,0.6f);
-            
+            // transform.localScale = new Vector3(-0.3f,0.3f,0.3f);
+            transform.eulerAngles = new Vector3(0, 180,0); // Flipped
+
         }
 
 

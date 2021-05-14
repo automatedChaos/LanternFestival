@@ -14,6 +14,8 @@ TagManager:
   - traget6
   - portal1
   - portal2
+  - rightBoundary
+  - leftBoundary
   layers:
   - Default
   - TransparentFX
