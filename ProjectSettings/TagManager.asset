@@ -7,6 +7,15 @@ TagManager:
   - crab
   - target1
   - target2
+  - handTrap
+  - target3
+  - target4
+  - target5
+  - traget6
+  - portal1
+  - portal2
+  - rightBoundary
+  - leftBoundary
   layers:
   - Default
   - TransparentFX
