@@ -97,7 +97,7 @@ public class Connection : MonoBehaviour
 
       // get the new crab
       GameObject crab = players[payload.key];
-      CrabMoveType2 movement = crab.GetComponent<CrabMoveType2>();
+      CrabMovement movement = crab.GetComponent<CrabMovement>();
 
       // something is missing - stop function
       if (crab == null || movement == null) return;

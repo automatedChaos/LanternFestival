@@ -4,141 +4,105 @@ using UnityEngine;
 
 public class heron : MonoBehaviour
 {
-    public GameObject bird;
-    //public SpriteRenderer sprite;
-    public float moveSpeed;
-    bool movingRight;
+  public Animator animator;
+  public Transform[] breadcrumbs;     // points to move between 
+  public Transform catchTarget;
+  public Transform mouth;
+  private int marker = 0;
+  private int previousScaleDirection = 1;
+  private bool heronActive = false;      // if true then heron is busy doing something and should not be catching crabs
+  private GameObject caughtCrab;
+  // Start is called before the first frame update
+  void Start()
+  {
+      TweenToNext();
+  }
 
-    public Animator Animator;
+  void Update()
+  {
+    if (heronActive) return;
 
-    bool walking;
-    bool scalingDown;
-    bool scalingUp;
+    // detect crabs to catch
+    Collider2D[] hits = Physics2D.OverlapCircleAll(
+        catchTarget.position, 1.2f
+    );
 
-    public float scalingSpeed ;
-    public Vector3 min = new Vector3(0.06f, 0.06f, 1f);
-    public Vector3 max = new Vector3(0.11f, 0.11f, 1f);
+    for (int i = 0; i < hits.Length; i++) {
+        if (hits[i].tag == "crab") {
 
+            heronActive = true;
+            animator.SetTrigger("GrabDown");
+            caughtCrab = hits[i].gameObject;
 
-// the 'rail'
-    public GameObject target1;
-    public GameObject target2;
-    public GameObject target3;
-    
-    
-    
+            // Stun crab
+            CrabMovement movement = caughtCrab.GetComponent<CrabMovement>();
+            movement.setStunnedState(true);
 
-
-    enum ControlState {MoveTo1, MoveTo2, MoveTo3};
-	ControlState currentState;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        movingRight = true;
-        Vector3 newScale = bird.gameObject.transform.localScale;
-        walking = true;
-        currentState = ControlState.MoveTo1;
+            StartCoroutine("CatchCrab"); 
+        }
     }
+  }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(movingRight == true){
-            // bird.transform.Translate(moveSpeed,0,0);
-            // transform.localScale = new Vector3(0.3f,0.3f,0.3f);
-            transform.eulerAngles = new Vector3(0, 0, 0); // Normal
+  IEnumerator CatchCrab () {
+    // wait for the grab animation to finish
+    yield return new WaitForSeconds(0.4f);
+    
+    // stop the crab from interacting with other stuff
+    Rigidbody2D rb = caughtCrab.GetComponent<Rigidbody2D>();
+    Destroy(rb);
 
-        }
-        else if(movingRight == false){
-            //bird.transform.Translate(-moveSpeed,0,0);
-            // transform.localScale = new Vector3(-0.3f,0.3f,0.3f);
-            transform.eulerAngles = new Vector3(0, 180,0); // Flipped
+    // position crab in mouth and attach to mouth
+    caughtCrab.transform.position = mouth.transform.position;
+    caughtCrab.transform.SetParent(mouth.transform);
+    animator.SetTrigger("GrabUp");
 
-        }
+    // set random time to drop crab
+    StartCoroutine("DropCrab");
+  }
 
+  IEnumerator DropCrab()
+  {
+    yield return new WaitForSeconds(Random.Range(7, 15));
+    caughtCrab.transform.parent = null;
+    caughtCrab.transform.localRotation = Quaternion.identity;
+    Rigidbody2D rb = caughtCrab.AddComponent<Rigidbody2D>();
+    rb.freezeRotation = true;
+    rb.isKinematic = false;
+    rb.mass = 1;
+    rb.drag = 0.25f;
+    rb.angularDrag = 0.47f;
+    rb.gravityScale = 0;
+    heronActive = false;
 
-        //move partten
+    Vector3 dropPosition = caughtCrab.transform.position + new Vector3(0, -5, 0);
+    LeanTween.move(caughtCrab, dropPosition, 1);
 
-         if(currentState == ControlState.MoveTo1){
-       float step = moveSpeed * Time.deltaTime;
-        // move sprite towards the target location
-        bird.transform.position = Vector2.MoveTowards(bird.transform.position,target1.transform.position,  step);
-        }
+    // unStun crab
+    CrabMovement movement = caughtCrab.GetComponent<CrabMovement>();
+    movement.setStunnedState(false);
 
-        if(currentState == ControlState.MoveTo2){
-       float step = moveSpeed * Time.deltaTime;
-        bird.transform.position = Vector2.MoveTowards(bird.transform.position,target2.transform.position,  step);
-        }
+  }
+  void TweenToNext()
+  {
+    // calculate the scale direction to change the bird direction   
+    float horizontalDirection = transform.position.x - breadcrumbs[marker].transform.position.x;
+    int scaleDirection = horizontalDirection < 0 ? 1 : -1;
+    if (scaleDirection != previousScaleDirection) transform.localScale = SetScaleX(transform.localScale, transform.localScale.x * -1);
+    
+    // trigger tween 
+    LeanTween.move(gameObject, breadcrumbs[marker].transform.position, 5).setOnComplete(TweenToNext);
+    
+    // step through the breadcrumbs
+    marker++;
+    if (marker >= breadcrumbs.Length) marker = 0;
 
-         if(currentState == ControlState.MoveTo3){
-       float step = moveSpeed * Time.deltaTime;
-        bird.transform.position = Vector2.MoveTowards(bird.transform.position,target3.transform.position,  step);
-        }
+    // log the direction for the next time around
+    previousScaleDirection = scaleDirection;
+  }
 
-        
-        
-        
-
-        //float move = Input.GetAxis("Horizontal");
-        
-
-        //if (move < 0 && ! sprite.flipX)
-           // sprite.flipX = true;
-        //if (move > 0 && sprite.flipX)
-           // sprite.flipX = false;
-    }
-
-    void OnTriggerEnter2D(Collider2D other) {
-        //if (other.CompareTag ("rightBoundary")) {
-            //movingRight = false;
-
-        //}
-        //if(other.CompareTag ("leftBoundary")){
-            //movingRight = true;
-        //}
-        if(walking== true){
-        if (other.CompareTag ("target1")) {
-
-			
-			currentState = ControlState.MoveTo2;
-
-            movingRight = false;
-			
-		}
-
-        if (other.CompareTag ("target2")) {
-
-			
-			currentState = ControlState.MoveTo3;
-
-           // movingRight = true;
-			
-		}
-
-         if (other.CompareTag ("target3")) {
-
-			
-			currentState = ControlState.MoveTo1;
-
-            movingRight = true;
-			
-		}
-
-       
-
-       
-
-       
-
-        
-
-       
-    }else if(walking== true)
-    currentState = ControlState.MoveTo1;
-
-
-        
-
-    }
+  Vector3 SetScaleX(Vector3 vector, float x)
+  {
+    vector.x = x;
+    return vector;
+  }
 }

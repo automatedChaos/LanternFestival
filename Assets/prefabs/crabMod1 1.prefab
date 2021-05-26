@@ -2478,10 +2478,10 @@ GameObject:
   m_Component:
   - component: {fileID: 815616404684158414}
   - component: {fileID: 815616404684158413}
-  - component: {fileID: 815616404684158412}
   - component: {fileID: 815616404684158387}
   - component: {fileID: 815616404684158386}
   - component: {fileID: 815616404684158385}
+  - component: {fileID: 5131476497079232143}
   m_Layer: 0
   m_Name: crabMod1 1
   m_TagString: crab
@@ -2558,29 +2558,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &815616404684158412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815616404684158384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc089fb9c3a4f413db1d0478d4737d4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainBody: {fileID: 815616404684158384}
-  scalingSpeed: 10
-  min: {x: 0.06, y: 0.06, z: 1}
-  max: {x: 0.11, y: 0.11, z: 1}
-  carbBody: {fileID: 815616404684158387}
-  Animator: {fileID: 815616404684158386}
-  reciver1: {fileID: 0}
-  reciver2: {fileID: 0}
-  HealthAmount: 100
-  HorizontalSpeed: 0.01
-  VerticalSpeed: 0.01
 --- !u!50 &815616404684158387
 Rigidbody2D:
   serializedVersion: 4
@@ -2637,6 +2614,20 @@ CircleCollider2D:
   m_Offset: {x: -0.42590022, y: -0.78082144}
   serializedVersion: 2
   m_Radius: 7.6050763
+--- !u!114 &5131476497079232143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815616404684158384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc089fb9c3a4f413db1d0478d4737d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 815616404684158386}
+  isStunned: 0
 --- !u!1 &815616404757074284
 GameObject:
   m_ObjectHideFlags: 0
