@@ -8,6 +8,7 @@ public class hand : MonoBehaviour
     public Transform leftMax;
     public Transform rightMax;
     public Transform dropPoint;
+    public List<Transform> detectorNet;
 
     public Animator animator;
 
@@ -15,8 +16,8 @@ public class hand : MonoBehaviour
 
     private bool handActive = true;
     private LTDescr handTravelTweenId; 
-
     private GameObject caughtCrab;
+    private Transform catchPoint; 
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,7 @@ public class hand : MonoBehaviour
 
     void startHandMovment () {
         // return to the rightMax and then loop
-        LeanTween.move(gameObject, rightMax, 2f).setOnComplete(() => {
+        LeanTween.move(gameObject, rightMax, 3f).setOnComplete(() => {
             handTravelTweenId = LeanTween.move(gameObject, leftMax, 5f).setLoopPingPong(1).setOnCompleteOnStart(true).setRepeat(-1);
             StartCoroutine("deactivateHand");
         });
@@ -43,24 +44,32 @@ public class hand : MonoBehaviour
     void Update()
     {
         if (handActive) return;
+        
+        // sweep across all detectors looking for crabs
+        // closest first
+        foreach(Transform detector in detectorNet){
 
-        // detect crabs to catch
-        Collider2D[] hits = Physics2D.OverlapCircleAll(
-            transform.position, 30f
-        );
+            // detect crabs to catch
+            Collider2D[] hits = Physics2D.OverlapCircleAll(
+                detector.position, 1f
+            );
+           
+            // select a crab 
+            if (hits.Length > 0){
+                // stop the for loop
 
-        // select a crab 
-        if (hits.Length > 0 && !handActive){
+                int crabSelection = Random.Range(0, hits.Length);
 
-            int crabSelection = Random.Range(0, hits.Length);
+                // Fail states
+                if (hits[crabSelection].tag != "crab") return;
+                if (hits[crabSelection].transform.position.x <= leftMax.position.x + 15) return;
+                 
+                handActive = true;
+                stopHandMovement();
 
-            // Fail states
-            if (hits[crabSelection].tag != "crab") return;
-            if (hits[crabSelection].transform.position.x <= leftMax.position.x + 15) return;
-            
-            handActive = true;
-            stopHandMovement();
-            catchCrab(hits[crabSelection].gameObject);
+                catchCrab(hits[crabSelection].gameObject);
+                break;
+            }
         }
     }
 
@@ -84,14 +93,24 @@ public class hand : MonoBehaviour
                 caughtCrab.transform.position = SetZ(caughtCrab.transform.position, -30);
                 Destroy(rb);
                 caughtCrab.transform.SetParent(gameObject.transform);
-                LeanTween.move(gameObject, dropPoint, 2f).setOnComplete(() =>
-                    {
-                        dropCaughtCrab();
-                    }
-                );
+                returnHome();
             }
         );
     }
+
+    void returnHome () {
+        // Move uo
+        LeanTween.move(gameObject, SetX(leftMax.position, transform.position.x), 2f).setOnComplete(() => {
+            // Move across 
+            LeanTween.move(gameObject, SetY(dropPoint.position, transform.position.y), 2f).setOnComplete(() => {
+                // Move down
+                LeanTween.move(gameObject, dropPoint.position, 2f).setOnComplete(() => {
+                    dropCaughtCrab();
+                });
+            });
+        });
+    }
+
 
     void dropCaughtCrab () {
         // reset the crab
@@ -112,13 +131,26 @@ public class hand : MonoBehaviour
         // unStun crab
         CrabMovement movement = caughtCrab.GetComponent<CrabMovement>();
         movement.setStunnedState(false);
-
-        // start the loop again
-        startHandMovment();
+        LeanTween.move(gameObject, gameObject.transform.position, 1f).setOnComplete(() => {
+            LeanTween.move(gameObject, SetX(leftMax.position, transform.position.x), 2f).setOnComplete(() => {
+                // start the loop again
+                startHandMovment();
+            });
+        });
     }
 
   Vector3 SetZ(Vector3 vector, float z){
     vector.z = z;
+    return vector;
+  }
+
+  Vector3 SetY(Vector3 vector, float y){
+    vector.y = y;
+    return vector;
+  }
+
+  Vector3 SetX(Vector3 vector, float x){
+    vector.x = x;
     return vector;
   }
 }

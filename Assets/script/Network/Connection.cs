@@ -24,6 +24,7 @@ public class Connection : MonoBehaviour
   async void Start()
   {
     websocket = new WebSocket("ws://34.80.38.153:8081");
+    // websocket = new WebSocket("ws://localhost:8081");
 
     websocket.OnOpen += () =>
     {
@@ -51,7 +52,7 @@ public class Connection : MonoBehaviour
       switch (payload.action){
         case "new-connection":
           clientKey = payload.key;
-          SendWebSocketMessage();
+          registerAsDisplay();
           break;
         case "player-type":
           playerStart(payload);
@@ -132,10 +133,6 @@ public class Connection : MonoBehaviour
     #endif
   }
 
-  void registerAsDisplay () {
-
-  }
-
   private Vector3 randomPosition () {
     float x = Random.Range(-5, 5);
     float y = Random.Range(-5, 5);
@@ -144,11 +141,25 @@ public class Connection : MonoBehaviour
     return new Vector3(x, y, z);
   }
 
-  async void SendWebSocketMessage()
+  async void registerAsDisplay()
   {
     if (websocket.State == WebSocketState.Open)
     {
       await websocket.SendText("{\"action\": \"register\", \"data\" : \"display\", \"key\": \"" + clientKey + "\"}");
+    }
+  }
+
+  public async void sendDamage (string crabKey) {
+    if (websocket.State == WebSocketState.Open)
+    {
+      await websocket.SendText("{\"action\": \"player-damage\", \"data\" : \"" + crabKey + "\", \"key\": \"" + clientKey + "\"}");
+    }
+  }
+
+  public async void sendComplete (string crabKey) {
+    if (websocket.State == WebSocketState.Open)
+    {
+      await websocket.SendText("{\"action\": \"player-complete\", \"data\" : \"" + crabKey + "\", \"key\": \"" + clientKey + "\"}");
     }
   }
 

@@ -9,6 +9,8 @@ public class CrabMovement : MonoBehaviour
   public Animator Animator;
   public float crabSpeed = 1.5f; 
   private int[] networkWASD = { 0,0,0,0,0};
+  
+  public int crabHealth = 100;
 
   public bool isStunned = false;
 
@@ -63,7 +65,7 @@ public class CrabMovement : MonoBehaviour
   public void setStunnedState (bool state) 
   {
     isStunned = state;
-
+    if (isStunned && !Animator.GetBool("isWaving")) sendDamage();
     if (rigidbody == null) {
       rigidbody = GetComponent<Rigidbody2D>();
     }
@@ -73,6 +75,13 @@ public class CrabMovement : MonoBehaviour
     for (int i = 0; i < networkWASD.Length; i++)
     {
       networkWASD[i] = values[i];
+    }
+  }
+
+  void sendDamage () {
+    Connection network = GameObject.Find("Network").GetComponent<Connection>();
+    if (network != null) {
+      network.sendDamage(gameObject.name);
     }
   }
   
