@@ -31,7 +31,7 @@ public class hand : MonoBehaviour
 
     void startHandMovment () {
         // return to the rightMax and then loop
-        LeanTween.move(gameObject, rightMax, 3f).setOnComplete(() => {
+        LeanTween.move(gameObject, rightMax, .5f).setOnComplete(() => {
             handTravelTweenId = LeanTween.move(gameObject, leftMax, 5f).setLoopPingPong(1).setOnCompleteOnStart(true).setRepeat(-1);
             StartCoroutine("deactivateHand");
         });
@@ -62,7 +62,7 @@ public class hand : MonoBehaviour
 
                 // Fail states
                 if (hits[crabSelection].tag != "crab") return;
-                if (hits[crabSelection].transform.position.x <= leftMax.position.x + 15) return;
+                if (hits[crabSelection].transform.position.x >= rightMax.position.x + 15) return;
                  
                 handActive = true;
                 stopHandMovement();
@@ -131,7 +131,7 @@ public class hand : MonoBehaviour
         // unStun crab
         CrabMovement movement = caughtCrab.GetComponent<CrabMovement>();
         movement.setStunnedState(false);
-        LeanTween.move(gameObject, gameObject.transform.position, 1f).setOnComplete(() => {
+        LeanTween.move(gameObject, gameObject.transform.position, .3f).setOnComplete(() => {
             LeanTween.move(gameObject, SetX(leftMax.position, transform.position.x), 2f).setOnComplete(() => {
                 // start the loop again
                 startHandMovment();
