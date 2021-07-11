@@ -9,8 +9,24 @@ public class Portal : MonoBehaviour
   private void OnCollisionEnter2D(Collision2D collision)
   {
     if (collision.gameObject.tag == "crab"){
-      // stop the crab from moving 
-      collision.gameObject.transform.position = destination.position;
+      StartCoroutine("teleport", collision.gameObject);
     }
+  }
+
+  IEnumerator teleport(GameObject crab)
+  {
+    // get script
+    CrabMovement cm = crab.GetComponent<CrabMovement>();
+    Animator ca = crab.GetComponent<Animator>();
+
+    if (cm != null && ca != null){
+      cm.setStunnedState(true);
+      ca.SetTrigger("crawlingOut");
+      yield return new WaitForSeconds(1f);
+      crab.transform.position = destination.position;
+      ca.SetTrigger("crawlingIn");
+      yield return new WaitForSeconds(1f);
+      cm.setStunnedState(false);
+    } 
   }
 }
