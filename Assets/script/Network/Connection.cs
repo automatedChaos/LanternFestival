@@ -7,6 +7,7 @@ using NativeWebSocket;
 using Random = UnityEngine.Random;
 public class Connection : MonoBehaviour
 {
+  public float crabScaleFactor = 1.1f;
   private WebSocket websocket;
   private string clientKey;
 
@@ -87,6 +88,8 @@ public class Connection : MonoBehaviour
     
     GameObject newPlayer = Instantiate(crabTypes[Int16.Parse(payload.data)], initPosition, Quaternion.identity);
     newPlayer.name = payload.key;
+    Vector3 scaleChange = new Vector3(crabScaleFactor, crabScaleFactor, crabScaleFactor);
+    newPlayer.transform.localScale = scaleChange;
     players[payload.key] = newPlayer;
   }
 

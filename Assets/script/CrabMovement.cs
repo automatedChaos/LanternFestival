@@ -8,6 +8,8 @@ public class CrabMovement : MonoBehaviour
   //animation control
   public Animator Animator;
   public float crabSpeed = 1.5f; 
+
+  public float crabWalkDuration = 1f;
   private int[] networkWASD = { 0,0,0,0,0};
   
   public int crabHealth = 100;
@@ -41,14 +43,15 @@ public class CrabMovement : MonoBehaviour
       StartCoroutine("moveCrab", new Vector3(-crabSpeed, 0, 0));
     }
 
-    // down
-    if (Input.GetKey(KeyCode.S) || networkWASD[2] == 1)
+    // down 
+    // ! order has been muddled for network control
+    if (Input.GetKey(KeyCode.S) || networkWASD[3] == 1)
     {
       StartCoroutine("moveCrab", new Vector3(0, -crabSpeed, 0));
     }
 
     // right
-    if (Input.GetKey(KeyCode.D) || networkWASD[3] == 1)
+    if (Input.GetKey(KeyCode.D) || networkWASD[2] == 1)
     {
       StartCoroutine("moveCrab", new Vector3(crabSpeed, 0, 0));
     }
@@ -88,7 +91,7 @@ public class CrabMovement : MonoBehaviour
   IEnumerator moveCrab (Vector3 direction) {
     rigidbody.velocity = direction;
     Animator.SetBool("isWalking", true);
-    yield return new WaitForSeconds(0.3f);
+    yield return new WaitForSeconds(crabWalkDuration);
     Animator.SetBool("isWalking", false);
     rigidbody.velocity = new Vector3(0,0,0);
   }
