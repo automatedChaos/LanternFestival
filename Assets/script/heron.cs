@@ -63,24 +63,26 @@ public class heron : MonoBehaviour
   IEnumerator DropCrab()
   {
     yield return new WaitForSeconds(Random.Range(7, 15));
-    caughtCrab.transform.parent = null;
-    caughtCrab.transform.localRotation = Quaternion.identity;
-    Rigidbody2D rb = caughtCrab.AddComponent<Rigidbody2D>();
-    rb.freezeRotation = true;
-    rb.isKinematic = false;
-    rb.mass = 1;
-    rb.drag = 0.25f;
-    rb.angularDrag = 0.47f;
-    rb.gravityScale = 0;
+    
+    if (caughtCrab != null) {
+      caughtCrab.transform.parent = null;
+      Rigidbody2D rb = caughtCrab.AddComponent<Rigidbody2D>();
+      rb.freezeRotation = true;
+      rb.isKinematic = false;
+      rb.mass = 1;
+      rb.drag = 0.25f;
+      rb.angularDrag = 0.47f;
+      rb.gravityScale = 0;
+      caughtCrab.transform.localRotation = Quaternion.identity;
+    
+      Vector3 dropPosition = caughtCrab.transform.position + new Vector3(0, -5, 0);
+      LeanTween.move(caughtCrab, dropPosition, 1);
+
+      // unStun crab
+      CrabMovement movement = caughtCrab.GetComponent<CrabMovement>();
+      movement.setStunnedState(false);
+    }
     heronActive = false;
-
-    Vector3 dropPosition = caughtCrab.transform.position + new Vector3(0, -5, 0);
-    LeanTween.move(caughtCrab, dropPosition, 1);
-
-    // unStun crab
-    CrabMovement movement = caughtCrab.GetComponent<CrabMovement>();
-    movement.setStunnedState(false);
-
   }
   void TweenToNext()
   {
