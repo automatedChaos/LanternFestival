@@ -2478,7 +2478,6 @@ GameObject:
   m_Component:
   - component: {fileID: 815616404684158414}
   - component: {fileID: 815616404684158413}
-  - component: {fileID: 815616404684158387}
   - component: {fileID: 815616404684158386}
   - component: {fileID: 815616404684158385}
   - component: {fileID: 5131476497079232143}
@@ -2558,27 +2557,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &815616404684158387
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815616404684158384}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!95 &815616404684158386
 Animator:
   serializedVersion: 3
@@ -2627,6 +2605,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 815616404684158386}
+  crabSpeed: 1.5
+  crabWalkDuration: 1
+  crabHealth: 100
   isStunned: 0
 --- !u!1 &815616404757074284
 GameObject:
