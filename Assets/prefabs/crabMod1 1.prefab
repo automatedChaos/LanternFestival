@@ -2481,6 +2481,7 @@ GameObject:
   - component: {fileID: 815616404684158386}
   - component: {fileID: 815616404684158385}
   - component: {fileID: 5131476497079232143}
+  - component: {fileID: 6951723568045540237}
   m_Layer: 0
   m_Name: crabMod1 1
   m_TagString: crab
@@ -2609,6 +2610,27 @@ MonoBehaviour:
   crabWalkDuration: 1
   crabHealth: 100
   isStunned: 0
+--- !u!50 &6951723568045540237
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815616404684158384}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &815616404757074284
 GameObject:
   m_ObjectHideFlags: 0

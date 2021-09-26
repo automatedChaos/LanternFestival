@@ -4062,17 +4062,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc089fb9c3a4f413db1d0478d4737d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainBody: {fileID: 4801652118865885210}
-  scalingSpeed: 10
-  min: {x: 0.06, y: 0.06, z: 1}
-  max: {x: 0.11, y: 0.11, z: 1}
-  carbBody: {fileID: 4801652118865885214}
   Animator: {fileID: 4801652118865885212}
-  reciver1: {fileID: 0}
-  reciver2: {fileID: 0}
-  HealthAmount: 100
-  HorizontalSpeed: 0.01
-  VerticalSpeed: 0.01
+  crabSpeed: 1.5
+  crabWalkDuration: 1
+  crabHealth: 100
+  isStunned: 0
 --- !u!50 &4801652118865885214
 Rigidbody2D:
   serializedVersion: 4
@@ -4093,7 +4087,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &4801652118865885209
 CircleCollider2D:
   m_ObjectHideFlags: 0
