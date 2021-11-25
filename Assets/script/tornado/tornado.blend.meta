@@ -1,14 +1,11 @@
 fileFormatVersion: 2
 guid: 807c7ae95384e42c4815025033f610d2
 ModelImporter:
-  serializedVersion: 20200
+  serializedVersion: 20101
   internalIDToNameTable:
   - first:
       74: 1989289236423521904
     second: Default Take
-  - first:
-      74: -623603649343465320
-    second: Scene
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -101,7 +98,6 @@ ModelImporter:
   animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
-  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
