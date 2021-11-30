@@ -104,7 +104,10 @@ public class Connection : MonoBehaviour
       CrabMovement movement = crab.GetComponent<CrabMovement>();
 
       // something is missing - stop function
-      if (crab == null || movement == null) return;
+      if (crab == null || movement == null ) return;
+
+      // don't walk if stunned
+      if (movement.isStunned) return;
       
       // WASD
       if (networkControls.y ==  1) movement.setNetworkWASD(new int[] { 1, 0, 0, 0, 0 });

@@ -22,10 +22,10 @@ public class Portal : MonoBehaviour
     if (cm != null && ca != null){
       cm.setStunnedState(true);
       ca.SetTrigger("crawlingOut");
-      yield return new WaitForSeconds(1f);
+      yield return new WaitForSeconds(5f);
       crab.transform.position = destination.position;
       ca.SetTrigger("crawlingIn");
-      yield return new WaitForSeconds(1f);
+      yield return new WaitForSeconds(5f);
       cm.setStunnedState(false);
     } 
   }
