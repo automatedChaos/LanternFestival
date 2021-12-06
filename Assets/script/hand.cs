@@ -25,7 +25,7 @@ public class hand : MonoBehaviour
         startHandMovment();
     }
     IEnumerator deactivateHand () {
-        yield return new WaitForSeconds(Random.Range(20, 25));
+        yield return new WaitForSeconds(Random.Range(40, 60));
         handActive = false;
     }
 
