@@ -89,11 +89,13 @@ public class CrabMovement : MonoBehaviour
   }
   
   IEnumerator moveCrab (Vector3 direction) {
-    rigidbody.velocity = direction;
-    Animator.SetBool("isWalking", true);
-    yield return new WaitForSeconds(crabWalkDuration);
-    Animator.SetBool("isWalking", false);
-    rigidbody.velocity = new Vector3(0,0,0);
+    if (rigidBody != null) {
+      rigidbody.velocity = direction;
+      Animator.SetBool("isWalking", true);
+      yield return new WaitForSeconds(crabWalkDuration);
+      Animator.SetBool("isWalking", false);
+      rigidbody.velocity = new Vector3(0,0,0);
+    }
   }
 
   IEnumerator crabWave () {
