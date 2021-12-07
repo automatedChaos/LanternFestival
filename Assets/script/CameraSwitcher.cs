@@ -10,9 +10,10 @@ public class CameraSwitcher : MonoBehaviour
      
     private void Start()
     {
-        // camera1.GetComponent<Camera>().enabled = true;
-        // camera2.GetComponent<Camera>().enabled = false;
-        // camera3.GetComponent<Camera>().enabled = false;
+        camera1.GetComponent<Camera>().enabled = true;
+        camera1.targetDisplay = 0;
+        camera2.GetComponent<Camera>().enabled = false;
+        camera3.GetComponent<Camera>().enabled = false;
     }
 
     private void Update()
