@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Crab Lanterns/Crab Lanterns 2.unity
-    guid: eb569512d77e9a64eb369dc301562e88
+    path: Assets/Crab Lanterns/Crab Lanterns 3.unity
+    guid: 4a8c2975a8bd2b64497ecfab22902dcf
   m_configObjects: {}
